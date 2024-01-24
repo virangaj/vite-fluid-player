@@ -81,34 +81,69 @@ function IframePlayer() {
     };
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (iframeRef.current) {
+        // Update the height of the iframe when the window is resized
+        iframeRef.current.height =
+          iframeRef.current.clientWidth * (9 / 16) + 20;
+      }
+    };
+
+    // Attach the resize event listener
+    window.addEventListener("resize", handleResize);
+
+    // Call handleResize once to set the initial height
+    handleResize();
+
+    // Remove the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <>
-      <iframe
-        ref={iframeRef}
-        src={"http://127.0.0.1:5501/index.html"}
-        title={"Welcome to"}
-        width={window.innerWidth - 200}
-        height={((window.innerWidth - 100) * 9) / 16}
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen"
-        onLoad={() => {
-          const data = {
-            source: "Zatlive",
-            src: currentVideo?.url,
-            userCurrentTime: currentVideo?.userCurrentTime,
-            poster: currentVideo?.poster,
-            vastEnabled: currentVideo?.poster,
-            vastTagPreroll: currentVideo?.vast_tag_url,
-            pre_ad: currentVideo?.pre_ad,
-            vastDuration: currentVideo?.duration ? currentVideo?.duration : 10,
-            title: currentVideo?.title,
-            adList: currentVideo?.adList,
-            response: currentVideo?.response,
-          };
-          const iframeWindow = iframeRef.current?.contentWindow;
-          iframeWindow?.postMessage(JSON.parse(JSON.stringify(data)), "*");
+      <div
+        style={{
+          display: "absolute",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "90%",
+          margin: "auto",
+          marginTop: "-35px",
+          overflow: "hidden",
         }}
-        frameBorder={0}
-      />
+      >
+        <iframe
+          ref={iframeRef}
+          src={"http://127.0.0.1:5501/index.html"}
+          title={"Welcome to"}
+          width={"100%"}
+          // height={window.innerHeight - 200}
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen"
+          onLoad={() => {
+            const data = {
+              source: "Zatlive",
+              src: currentVideo?.url,
+              userCurrentTime: currentVideo?.userCurrentTime,
+              poster: currentVideo?.poster,
+              vastEnabled: currentVideo?.poster,
+              vastTagPreroll: currentVideo?.vast_tag_url,
+              pre_ad: currentVideo?.pre_ad,
+              vastDuration: currentVideo?.duration
+                ? currentVideo?.duration
+                : 10,
+              title: currentVideo?.title,
+              adList: currentVideo?.adList,
+              response: currentVideo?.response,
+            };
+            const iframeWindow = iframeRef.current?.contentWindow;
+            iframeWindow?.postMessage(JSON.parse(JSON.stringify(data)), "*");
+          }}
+          frameBorder={0}
+        />
+      </div>
     </>
   );
 }

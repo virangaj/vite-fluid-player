@@ -11,7 +11,7 @@ function App() {
       </button>
 
       {play ? (
-        <div className="h-[800px] w-[1000px]">
+        <div className=" ">
           <IframePlayer />
         </div>
       ) : (
