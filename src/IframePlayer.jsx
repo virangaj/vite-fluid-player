@@ -11,12 +11,12 @@ function IframePlayer() {
       url: "https://vz-dda35b68-58b.b-cdn.net/0ef48f18-749d-4e0c-a68e-bdb405fb4be0/playlist.m3u8",
       userCurrentTime: 50,
       poster:
-        "https://c-1y15z120-t12c.ayozat.com/movies/aacl2KMMV81xmc2rUlU5Ty3WIjnW3w5q80D8oxDe.png",
+        "https://assets.change.org/photos/3/ti/ue/GftIUERLKpHhvwo-1600x900-noPad.jpg?1530100935",
       vastEnabled: true,
       vast_tag_url: "/static/google.xml",
       pre_ad: "/static/google.xml",
       duration: 10,
-      title: "Beyonce - Beyond the Glam",
+      title: "Dog-Race-Season 01",
       response: {
         question: "Which is your preferred betting site?",
         responses: [
