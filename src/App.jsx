@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import IframePlayer from './IframePlayer';
+import { useState } from "react";
+import IframePlayer from "./IframePlayer";
 
 function App() {
   const [play, setPlay] = useState(false);
@@ -7,10 +7,16 @@ function App() {
   return (
     <>
       <button onClick={() => setPlay((val) => !val)}>
-        {play ? 'Pause' : 'Play'}
+        {play ? "Pause" : "Play"}
       </button>
 
-      {play ? <IframePlayer /> : <></>}
+      {play ? (
+        <div className="h-[800px] w-[1000px]">
+          <IframePlayer />
+        </div>
+      ) : (
+        <></>
+      )}
     </>
   );
 }
