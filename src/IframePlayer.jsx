@@ -109,7 +109,7 @@ function IframePlayer() {
           display: "absolute",
           justifyContent: "center",
           alignItems: "center",
-          width: "90%",
+          width: "85%",
           margin: "auto",
           marginTop: "-35px",
           overflow: "hidden",
